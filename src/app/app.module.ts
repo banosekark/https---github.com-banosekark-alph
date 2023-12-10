@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './core_module/header/header.component';
-import { FooterComponent } from './core_module/footer/footer.component';
-import { HomeComponent } from './core_module/home/home.component';
-import { NavigationComponent } from './core_module/navigation/navigation.component';
+import { FooterComponent } from './core_module/components/footer/footer.component';
+import { HeaderComponent } from './core_module/components/header/header.component';
+import { HomeComponent } from './core_module/components/home/home.component';
+import { NavigationComponent } from './core_module/components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +14,10 @@ import { NavigationComponent } from './core_module/navigation/navigation.compone
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
