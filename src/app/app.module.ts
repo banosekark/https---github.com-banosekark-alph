@@ -7,6 +7,7 @@ import { FooterComponent } from './core_module/components/footer/footer.componen
 import { HeaderComponent } from './core_module/components/header/header.component';
 import { HomeComponent } from './core_module/components/home/home.component';
 import { NavigationComponent } from './core_module/components/navigation/navigation.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { NavigationComponent } from './core_module/components/navigation/navigat
     HomeComponent,
     NavigationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],
 })
