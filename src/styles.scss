@@ -4,6 +4,30 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+  text-decoration: none;
+  color: currentColor;
+  &:hover {
+    color: currentColor;
+  }
+}
+header {
+  width: 100vw;
+  .container-fluid {
+    width: 100%;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 .modal-backdrop {
   z-index: 9 !important;
+}
+@media (max-width: 992px) {
+  header {
+    .container-fluid {
+      padding: 0 5%;
+    }
+  }
 }

@@ -1,11 +1,20 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  faFacebook,
+  faLinkedinIn,
+  faSquareInstagram,
+} from '@fortawesome/free-brands-svg-icons';
 
 import {
   faCircleInfo,
   faCoffee,
+  faContactBook,
+  faEnvelope,
   faGear,
   faHome,
   faHouse,
+  faPersonChalkboard,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -19,4 +28,11 @@ export class NavigationComponent {
   homeIcon = faHome;
   aboutIcon = faCircleInfo;
   servicesIcon = faGear;
+  requirementIcon = faPersonChalkboard;
+  contactUs = faContactBook;
+  envelopeIcon = faEnvelope;
+  facebookIcon = faFacebook;
+  instagramIcon = faSquareInstagram;
+  linkedInIcon = faLinkedinIn;
+  closeIcon = faXmark;
 }
