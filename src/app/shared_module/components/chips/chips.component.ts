@@ -16,7 +16,11 @@ export interface Fruit {
 export class ChipsComponent {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
+  fruits: Fruit[] = [
+    { name: 'Project 1 completed' },
+    { name: 'Project 2 completed' },
+    { name: 'Project 3 completed' },
+  ];
 
   announcer = inject(LiveAnnouncer);
 

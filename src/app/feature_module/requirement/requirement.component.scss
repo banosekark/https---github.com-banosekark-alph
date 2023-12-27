@@ -21,6 +21,7 @@
           width: 45%;
         }
       }
+
       .button-group {
         display: flex;
         justify-content: space-between;
@@ -30,12 +31,22 @@
         }
       }
 
-      .circle-button {
-        width: 50px;
-        height: 50px;
+      .action {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: -59px;
+        .circle-button {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
   }
+}
+
+.file-name {
+  margin-left: 1rem; /* or whatever margin you require */
 }
 
 @media (max-width: 650px) {

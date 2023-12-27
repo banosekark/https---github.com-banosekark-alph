@@ -10,55 +10,61 @@
           <mat-card-content class="card-content">
             <img mat-card-image src="../../../assets/images/test-images/requirement" class="img-fluid"
               alt="Photo of a Shiba Inu">
-            <form class="requirement-form">
+            <form class="requirement-form" [formGroup]="requirementForm">
               <mat-form-field appearance="outline">
                 <mat-label>Full Name</mat-label>
-                <input matInput placeholder="Full Name">
+                <input matInput placeholder="Full Name" formControlName="fullName">
                 <mat-hint>Hint</mat-hint>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email">
+                <input matInput placeholder="Email" formControlName="email">
                 <mat-hint>Hint</mat-hint>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number">
+                <input matInput placeholder="Phone Number" formControlName="phoneNumber">
                 <mat-hint>Hint</mat-hint>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-form-field>
-                  <input matInput placeholder="Subject">
+                  <input matInput placeholder="Subject" formControlName="subject">
                   <mat-hint>Hint</mat-hint>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="Company Name">
+                  <input matInput placeholder="Company Name" formControlName="companyName">
                   <mat-hint>Hint</mat-hint>
                 </mat-form-field>
                 <div class="mesurement">
                   <mat-form-field>
-                    <input matInput placeholder="Width">
+                    <input matInput placeholder="Width" formControlName="width">
                     <mat-hint>Hint</mat-hint>
                   </mat-form-field>
                   <mat-form-field>
-                    <input matInput placeholder="Height">
+                    <input matInput placeholder="Height" formControlName="height">
                     <mat-hint>Hint</mat-hint>
                   </mat-form-field>
                 </div>
                 <mat-form-field>
-                  <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+                  <textarea matInput placeholder="Add Your Comments" formControlName="comments"></textarea>
                   <mat-hint>Hint</mat-hint>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput placeholder="Upload Image">
-                  <mat-hint>Hint</mat-hint>
+                  <mat-select formControlName="selectType">
+                    <mat-option value="option1">Option 1</mat-option>
+                    <mat-option value="option2">Option 2</mat-option>
+                    <mat-option value="option3">Option 3</mat-option>
+                  </mat-select>
                 </mat-form-field>
+                <app-upload-form></app-upload-form>
+              </mat-form-field>
+              <div class="action">
                 <button mat-mini-fab color="accent" class="circle-button"
                   aria-label="Example icon button with a plus one icon">
                   <mat-icon>add</mat-icon>
                 </button>
-                <app-chips></app-chips>
-              </mat-form-field>
+              </div>
+
               <div class="button-group">
                 <button mat-raised-button color="primary">Submit</button>
                 <button mat-raised-button color="warn">Reset</button>

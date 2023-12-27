@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RequirementComponent } from './feature_module/requirement/requirement.component';
 import { ChipsComponent } from './shared_module/components/chips/chips.component';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UploadFormComponent } from './shared_module/components/upload-form/upload-form.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -18,7 +20,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,9 +33,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavigationComponent,
     RequirementComponent,
     ChipsComponent,
+    UploadFormComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
@@ -43,6 +49,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatChipsModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSelectModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
