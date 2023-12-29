@@ -41,6 +41,9 @@
           height: 50px;
         }
       }
+      input.ng-invalid.ng-touched {
+        border: 2px solid red;
+      }
     }
   }
 }
