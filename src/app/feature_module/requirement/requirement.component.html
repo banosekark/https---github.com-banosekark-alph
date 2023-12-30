@@ -30,23 +30,31 @@
                 <div *ngFor="let skill of projects.controls; let i=index">
                   <div [formGroupName]="i">
                     <mat-form-field appearance="outline">
+                      <mat-label>Subject</mat-label>
                       <input matInput placeholder="Subject" formControlName="subject">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
+                      <mat-label>Company Name</mat-label>
                       <input matInput placeholder="Company Name" formControlName="companyName">
                       <mat-error>Please enter a Company Name</mat-error>
                     </mat-form-field>
                     <div class="mesurement">
                       <mat-form-field appearance="outline">
+                        <mat-label>Width</mat-label>
                         <input matInput placeholder="Width" formControlName="width">
+                        <mat-hint>Width should be in inches(eg: 5.9)</mat-hint>
                         <mat-error>Please enter a valid Width</mat-error>
                       </mat-form-field>
+
                       <mat-form-field appearance="outline">
+                        <mat-label>Height</mat-label>
                         <input matInput placeholder="Height" formControlName="height">
+                        <mat-hint>Height should be in inches(eg: 5.9)</mat-hint>
                         <mat-error>Please enter a valid Height</mat-error>
                       </mat-form-field>
                     </div>
                     <mat-form-field appearance="outline">
+                      <mat-label>Add Your Comments</mat-label>
                       <textarea matInput placeholder="Add Your Comments" formControlName="comments"></textarea>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
@@ -59,16 +67,23 @@
                       <mat-error>Please enter a valid Select Type</mat-error>
                     </mat-form-field>
                     <app-upload-form></app-upload-form>
-
                   </div>
                 </div>
+
               </ng-container>
-              <div class="action">
+
+              <!-- --------------------------dont delte this comments ------------->
+              <!-- <div class="action">
                 <button mat-mini-fab color="accent" class="circle-button"
                   aria-label="Example icon button with a plus one icon" (click)="onAddRequirement()">
                   <mat-icon>add</mat-icon>
                 </button>
-              </div>
+                <button mat-mini-fab color="accent" class="circle-button"
+                  aria-label="Example icon button with a plus one icon" (click)="onDeleteRequirement()">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div> -->
+
               <div class="button-group">
                 <button type="submit" mat-raised-button color="primary">Submit</button>
                 <button mat-raised-button color="warn">Reset</button>

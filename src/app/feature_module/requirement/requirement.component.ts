@@ -32,14 +32,6 @@ export class RequirementComponent implements OnInit {
         Validators.min(10),
       ]),
       projects: this.fb.array([this.newRequirement()]),
-      projectRequirement: this.fb.group({
-        subject: new FormControl(''),
-        companyName: new FormControl('', [Validators.required]),
-        width: new FormControl('', [Validators.required]),
-        height: new FormControl('', [Validators.required]),
-        comments: new FormControl(''),
-        selectType: new FormControl('', [Validators.required]),
-      }),
     });
   }
 
@@ -51,12 +43,12 @@ export class RequirementComponent implements OnInit {
   // form array controls
   newRequirement(): FormGroup {
     return this.fb.group({
-      subject: '',
-      companyName: '',
-      width: '',
-      height: '',
-      comments: '',
-      selectType: '',
+      subject: new FormControl(''),
+      companyName: new FormControl('', [Validators.required]),
+      width: new FormControl('', [Validators.required]),
+      height: new FormControl('', [Validators.required]),
+      comments: new FormControl(''),
+      selectType: new FormControl('Select Type', [Validators.required]),
     });
   }
 
@@ -64,6 +56,8 @@ export class RequirementComponent implements OnInit {
   onAddRequirement() {
     this.projects.push(this.newRequirement());
   }
+
+  onDeleteRequirement() {}
 
   onRequirementSubmitted() {
     console.log(this.requirementForm);
