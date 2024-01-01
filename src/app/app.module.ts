@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
+import { GeneratePptDirective } from './shared_module/directives/generate-ppt.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatDividerModule } from '@angular/material/divider';
     RequirementComponent,
     ChipsComponent,
     UploadFormComponent,
+    GeneratePptDirective,
   ],
   imports: [
     BrowserModule,

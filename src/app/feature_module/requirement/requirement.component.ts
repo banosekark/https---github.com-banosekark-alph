@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { RequirementService } from 'src/app/services/requirement.service';
 
 @Component({
   selector: 'app-requirement',
@@ -16,7 +17,7 @@ export class RequirementComponent implements OnInit {
   requirementForm!: FormGroup;
   selectedFile: any = null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private formData: RequirementService) {}
 
   ngOnInit(): void {
     this.pageForm();
@@ -60,6 +61,6 @@ export class RequirementComponent implements OnInit {
   onDeleteRequirement() {}
 
   onRequirementSubmitted() {
-    console.log(this.requirementForm);
+    this.formData.sendFormData(this.requirementForm.value);
   }
 }
