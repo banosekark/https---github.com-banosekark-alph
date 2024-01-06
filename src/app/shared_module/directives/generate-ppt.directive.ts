@@ -78,9 +78,15 @@ export class GeneratePptDirective implements OnInit {
 
     let slide = pptx.addSlide({ masterName: 'MASTER_SLIDE' });
     slide.addText('How To Create PowerPoint Presentations with JavaScript', {
-      x: 0.5,
-      y: 0.7,
-      fontSize: 18,
+      x: 0,
+      y: '50%',
+      w: '100%',
+      fontSize: 34,
+      color: '003b75',
+      bold: true,
+      align: 'center',
+      valign: 'middle',
+      shadow: { type: 'outer', opacity: 0.3 },
     });
   }
   genSlide02(pptx: any) {
