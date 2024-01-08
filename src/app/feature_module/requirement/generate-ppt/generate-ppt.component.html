@@ -1,8 +1,19 @@
-<h1 mat-dialog-title>Delete file</h1>
+<h1 mat-dialog-title>Project Details</h1>
+<mat-divider></mat-divider>
 <div mat-dialog-content>
-  Would you like to delete cat.jpeg?
+  <mat-list role="list">
+    <mat-list-item role="listitem"><strong>Project Name :</strong>{{formData.projects[0].subject}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>City :</strong>{{formData.projects[0].city}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>Mobile Number :</strong> {{formData.phoneNumber}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>Type :</strong> {{formData.projects[0].selectType}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>Width :</strong> {{formData.projects[0].width}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>Height :</strong> {{formData.projects[0].height}}</mat-list-item>
+    <mat-list-item role="listitem"><strong>Image :</strong> {{formData.projects[0].upload}}</mat-list-item>
+  </mat-list>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial appGeneratePpt [pptName]="'projectName'">Ok</button>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button mat-dialog-close color="warn">Close</button>
+  <button mat-raised-button mat-dialog-close cdkFocusInitial color="primary" appGeneratePpt [pptName]="">Generate
+    PPT</button>
 </div>

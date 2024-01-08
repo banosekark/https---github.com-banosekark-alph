@@ -16,6 +16,7 @@ import { ChipsComponent } from './shared_module/components/chips/chips.component
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadFormComponent } from './shared_module/components/upload-form/upload-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GeneratePptComponent } from './feature_module/requirement/generate-ppt/generate-ppt.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -27,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
-import { GeneratePptComponent } from './feature_module/requirement/generate-ppt/generate-ppt.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { GeneratePptComponent } from './feature_module/requirement/generate-ppt/
     MatToolbarModule,
     MatDividerModule,
     MatDialogModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

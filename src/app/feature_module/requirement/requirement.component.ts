@@ -19,12 +19,9 @@ export class RequirementComponent implements OnInit {
   requirementForm!: FormGroup;
   selectedFile: any = null;
   projectName: string = '';
+  formData: any = {};
 
-  constructor(
-    private fb: FormBuilder,
-    private formData: RequirementService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.pageForm();
@@ -58,6 +55,7 @@ export class RequirementComponent implements OnInit {
       height: new FormControl('', [Validators.required]),
       comments: new FormControl(''),
       selectType: new FormControl('Select Type', [Validators.required]),
+      upload: new FormControl('', [Validators.required]),
     });
   }
 
@@ -69,9 +67,8 @@ export class RequirementComponent implements OnInit {
   onDeleteRequirement() {}
 
   onRequirementSubmitted() {
-    this.formData.sendFormData(this.requirementForm.value);
-    this.projectName = this.requirementForm.value.projects[0].subject;
-    this.openDialog('3000ms', '1500ms');
+    this.formData = this.requirementForm.value;
+    this.openDialog('1000ms', '1500ms');
   }
 
   // Dialog Box
@@ -81,9 +78,10 @@ export class RequirementComponent implements OnInit {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(GeneratePptComponent, {
-      width: '250px',
+      width: '500px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: this.formData,
     });
   }
 }

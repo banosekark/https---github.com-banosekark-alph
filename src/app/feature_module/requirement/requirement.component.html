@@ -26,11 +26,6 @@
                 <input matInput placeholder="Phone Number" formControlName="phoneNumber">
                 <mat-error>Please enter a valid Phone Number</mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-                <input matInput placeholder="City" formControlName="city">
-                <mat-error>Please enter a valid City</mat-error>
-              </mat-form-field>
               <ng-container formArrayName="projects">
                 <div *ngFor="let skill of projects.controls; let i=index">
                   <div [formGroupName]="i">
@@ -42,6 +37,11 @@
                       <mat-label>Company Name</mat-label>
                       <input matInput placeholder="Company Name" formControlName="companyName">
                       <mat-error>Please enter a Company Name</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>City</mat-label>
+                      <input matInput placeholder="City" formControlName="city">
+                      <mat-error>Please enter a valid City</mat-error>
                     </mat-form-field>
                     <div class="mesurement">
                       <mat-form-field appearance="outline">
