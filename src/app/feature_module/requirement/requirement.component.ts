@@ -6,7 +6,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { RequirementService } from 'src/app/services/requirement.service';
+import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
 
 @Component({
   selector: 'app-requirement',
@@ -16,8 +18,10 @@ import { RequirementService } from 'src/app/services/requirement.service';
 export class RequirementComponent implements OnInit {
   requirementForm!: FormGroup;
   selectedFile: any = null;
+  projectName: string = '';
+  formData: any = {};
 
-  constructor(private fb: FormBuilder, private formData: RequirementService) {}
+  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.pageForm();
@@ -46,10 +50,12 @@ export class RequirementComponent implements OnInit {
     return this.fb.group({
       subject: new FormControl(''),
       companyName: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
       comments: new FormControl(''),
       selectType: new FormControl('Select Type', [Validators.required]),
+      upload: new FormControl('', [Validators.required]),
     });
   }
 
@@ -61,6 +67,21 @@ export class RequirementComponent implements OnInit {
   onDeleteRequirement() {}
 
   onRequirementSubmitted() {
-    this.formData.sendFormData(this.requirementForm.value);
+    this.formData = this.requirementForm.value;
+    this.openDialog('1000ms', '1500ms');
+  }
+
+  // Dialog Box
+  //Open dialog box
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog.open(GeneratePptComponent, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: this.formData,
+    });
   }
 }

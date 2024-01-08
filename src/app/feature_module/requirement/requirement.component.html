@@ -38,6 +38,11 @@
                       <input matInput placeholder="Company Name" formControlName="companyName">
                       <mat-error>Please enter a Company Name</mat-error>
                     </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>City</mat-label>
+                      <input matInput placeholder="City" formControlName="city">
+                      <mat-error>Please enter a valid City</mat-error>
+                    </mat-form-field>
                     <div class="mesurement">
                       <mat-form-field appearance="outline">
                         <mat-label>Width</mat-label>
@@ -84,7 +89,7 @@
               </div> -->
 
               <div class="button-group">
-                <button type="submit" mat-raised-button color="primary" appGeneratePpt>Submit</button>
+                <button type="submit" mat-raised-button color="primary">Submit</button>
                 <button mat-raised-button color="warn">Reset</button>
               </div>
             </form>

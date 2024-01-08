@@ -1,4 +1,10 @@
-import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 import pptxgen from 'pptxgenjs';
 import { RequirementService } from 'src/app/services/requirement.service';
 
@@ -11,32 +17,19 @@ export class GeneratePptDirective implements OnInit {
   selectedFile: any = null;
   RequirementData!: any;
 
-  constructor(private el: ElementRef, private formData: RequirementService) {}
+  @Input() pptName: any;
+
+  constructor(private el: ElementRef) {}
 
   @HostListener('click') generate() {
-    this.onGenerate();
-  }
-
-  ngOnInit(): void {
-    this.getRequirementData();
-  }
-
-  getRequirementData() {
-    this.formData.formDataSubject.subscribe((data) => {
-      this.RequirementData = data;
-      console.log(this.RequirementData);
-    });
-  }
-
-  onGenerate() {
-    // add slide inside the ppt
-
     this.genSlide01(this.pptx);
     this.genSlide02(this.pptx);
     this.genSlide03(this.pptx);
     this.genSlide04(this.pptx);
     this.genSlideEnd(this.pptx);
   }
+
+  ngOnInit(): void {}
 
   genMasterSlide(pptx: any) {
     pptx.layout = 'LAYOUT_WIDE';
@@ -81,7 +74,7 @@ export class GeneratePptDirective implements OnInit {
   genSlide01(pptx: any) {
     this.genMasterSlide(this.pptx);
     let slide = pptx.addSlide({ masterName: 'MASTER_SLIDE' });
-    slide.addText('How To Create PowerPoint Presentations with JavaScript', {
+    slide.addText(this.pptName, {
       x: 0,
       y: '45%',
       w: '100%',

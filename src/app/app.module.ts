@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { GeneratePptDirective } from './shared_module/directives/generate-ppt.directive';
+
 import { FooterComponent } from './core_module/components/footer/footer.component';
 import { HeaderComponent } from './core_module/components/header/header.component';
 import { HomeComponent } from './core_module/components/home/home.component';
@@ -13,6 +15,8 @@ import { RequirementComponent } from './feature_module/requirement/requirement.c
 import { ChipsComponent } from './shared_module/components/chips/chips.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UploadFormComponent } from './shared_module/components/upload-form/upload-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GeneratePptComponent } from './feature_module/requirement/generate-ppt/generate-ppt.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
-import { GeneratePptDirective } from './shared_module/directives/generate-ppt.directive';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { GeneratePptDirective } from './shared_module/directives/generate-ppt.di
     ChipsComponent,
     UploadFormComponent,
     GeneratePptDirective,
+    GeneratePptComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,8 @@ import { GeneratePptDirective } from './shared_module/directives/generate-ppt.di
     MatSelectModule,
     MatToolbarModule,
     MatDividerModule,
+    MatDialogModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
