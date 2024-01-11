@@ -43,7 +43,7 @@ export class RequirementComponent implements OnInit {
   // requirement form
   pageForm() {
     this.requirementForm = this.fb.group({
-      fullName: new FormControl('', [Validators.required]),
+      projectName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', [
         Validators.required,
@@ -159,8 +159,8 @@ export class RequirementComponent implements OnInit {
     }
   }
 
-  onAddFullName(e: any) {
-    this.fullName = e.target.value;
+  onAddProjectNameName(e: any) {
+    this.projectName = e.target.value;
   }
   onAddEmail(e: any) {
     this.emailId = e.target.value;

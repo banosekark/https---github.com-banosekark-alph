@@ -4,7 +4,7 @@
       <div class="col-md-6 mb-3 display">
         <div class="h-100 p-3 text-white bg-dark rounded-3">
           <h2>Presentation Content</h2>
-          <p><span class="text-uppercase">Full Name :</span> <span class="text-warning"> {{fullName}}
+          <p><span class="text-uppercase">Project Name :</span> <span class="text-warning"> {{fullName}}
             </span></p>
           <p><span class="text-uppercase">Email :</span> <span class="text-warning"> {{emailId}}
             </span></p>
@@ -49,8 +49,9 @@
           <h2>Add borders</h2>
           <form class="" [formGroup]="requirementForm" (ngSubmit)="onRequirementSubmitted()">
             <mat-form-field appearance="outline">
-              <mat-label>Full Name</mat-label>
-              <input matInput placeholder="Full Name" formControlName="fullName" (change)="onAddFullName($event)">
+              <mat-label>Project Name</mat-label>
+              <input matInput placeholder="Project Name" formControlName="projectName"
+                (change)="onAddProjectNameName($event)">
               <mat-error>Please enter a valid Full Name</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
@@ -109,9 +110,11 @@
                     <mat-error>Please enter a valid Select Type</mat-error>
                   </mat-form-field>
                   <!-- upload image -->
-                  <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                  <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="upload">
-                  <span class="file-name">{{selectedFile?.name}}</span>
+                  <div class="upload">
+                    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                    <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="upload">
+                    <span class="file-name">{{selectedFile?.name}}</span>
+                  </div>
                 </div>
               </div>
             </ng-container>
