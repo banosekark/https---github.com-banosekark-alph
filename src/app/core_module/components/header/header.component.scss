@@ -1,0 +1,17 @@
+@use "../../../../scss/abstracts/colors";
+header {
+  // height: 91vh;
+}
+.section-1 {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 75px;
+    font-weight: 700;
+    color: #102447;
+    width: 90%;
+    text-align: center;
+  }
+}

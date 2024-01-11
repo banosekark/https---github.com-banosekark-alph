@@ -1,0 +1,73 @@
+<!-- Implement the Navbar -->
+<nav class="mobile-offcanvas navbar navbar-expand-sm sticky-top navbar-dark bg-primary">
+  <div class="container-fluid">
+    <!-- Replace this with your own logo -->
+    <a class="navbar-brand" href="https://www.kindacode.com">Alpha Enterprises</a>
+
+
+    <!-- desktop menu-->
+    <div class="alpha-items d-none">
+      <div class="item">
+        <a routerLink="/">Home</a>
+      </div>
+      <div class="item">
+        <a routerLink="/">About</a>
+      </div>
+      <div class="item">
+        <a routerLink="/">Services</a>
+      </div>
+      <div class="item">
+        <a routerLink="/">Requirement</a>
+      </div>
+      <div class="item">
+        <a routerLink="/">Contact</a>
+      </div>
+      <div class="item-button">
+        <a type="button" routerLink="/">Lets talk</a>
+      </div>
+    </div>
+    <!-- Toggler Button for small screens -->
+    <div class="mobile-menu">
+      <a href="#" class="navbar-toggle" type="button" data-bs-toggle="modal" data-bs-target="#alphaMenuModal"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </a>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="alphaMenuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="assets/images/test-images/logo.jpg" alt="Alpha Enterprises Logo">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><fa-icon
+                [icon]="closeIcon"></fa-icon><a routerLink="/"></a></button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-line">
+              <fa-icon [icon]="homeIcon"></fa-icon><a routerLink="/">Home</a>
+            </div>
+            <div class="modal-line">
+              <fa-icon [icon]="aboutIcon"></fa-icon><a routerLink="/">About Us</a>
+            </div>
+            <div class="modal-line">
+              <fa-icon [icon]="servicesIcon"></fa-icon><a routerLink="/">Services</a>
+            </div>
+            <div class="modal-line">
+              <fa-icon [icon]="requirementIcon"></fa-icon><a routerLink="requirement">Requirement</a>
+            </div>
+            <div class="modal-line">
+              <fa-icon [icon]="contactUs"></fa-icon><a routerLink="/">Contact Us</a>
+            </div>
+            <a type="button" class="menu-button">Lets create ppt</a>
+          </div>
+          <div class="modal-footer">
+            <a routerLink="/" target="_blank"><fa-icon [icon]="envelopeIcon"></fa-icon></a>
+            <a routerLink="/" target="_blank"><fa-icon [icon]="facebookIcon"></fa-icon></a>
+            <a routerLink="/" target="_blank"><fa-icon [icon]="instagramIcon"></fa-icon></a>
+            <a routerLink="/" target="_blank"><fa-icon [icon]="linkedInIcon"></fa-icon></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

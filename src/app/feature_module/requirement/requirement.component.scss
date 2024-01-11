@@ -1,0 +1,64 @@
+.container-fluid {
+  .ppt-generator {
+    .display {
+      .slide-wrapper {
+        display: flex;
+        justify-content: space-between;
+        img {
+          width: 100%;
+        }
+      }
+      .card:nth-child(odd) {
+        margin-right: 10px;
+      }
+      .card {
+        h5.card-header {
+          margin-bottom: 0;
+        }
+        .card-body {
+          span.text-uppercase {
+            display: block;
+          }
+        }
+      }
+    }
+    .requirement-form {
+      mat-form-field {
+        width: 100%;
+      }
+
+      .upload {
+        display: inline-flex;
+        padding: 0 0 40px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        button {
+          width: 45%;
+        }
+      }
+    }
+  }
+}
+
+//Apply styles starting from medium devices
+@media (min-width: 768px) {
+  .container-fluid {
+    .ppt-generator {
+      .display {
+        .slide-wrapper {
+          .card {
+            h5.card-header {
+            }
+            .card-body {
+              span.text-uppercase {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

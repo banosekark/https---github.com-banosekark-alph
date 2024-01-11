@@ -1,2 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @use "./scss/index";
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: currentColor;
+  &:hover {
+    color: currentColor;
+  }
+}
+
+.modal-backdrop {
+  z-index: 9 !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #d7d5d5;
+}

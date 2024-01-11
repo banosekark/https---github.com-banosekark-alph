@@ -1,0 +1,33 @@
+<!-- <form [formGroup]="uploadForm" (ngSubmit)="onFormSubmit()">
+  <table>
+    <div formArrayName="filesToUpload">
+      <div *ngFor="let f of filesToUpload.controls; index as i">
+        <tr>
+          <td>
+            <input [formControlName]="i" type="file" id="file{{i}}">
+            <label class="error">
+              Select the file.
+            </label>
+            <label>
+              Invalid file extension.
+            </label>
+          </td>
+          <td>{{percentUploaded[i]}}% </td>
+          <td>
+            <button type="button" (click)="deleteFile(i)">Delete</button>
+          </td>
+        </tr>
+      </div>
+    </div>
+    <tr>
+      <td colspan="3">
+        <button type="submit">Submit</button>
+        <button type="button" (click)="addMoreFiles()">Add More Files</button>
+        <button type="button" (click)="formReset()">Reset</button>
+      </td>
+    </tr>
+  </table>
+</form> -->
+<div class="file-upload">
+  <input formControlName="i" type="file" id="file" formControlName="upload">
+</div>
