@@ -49,6 +49,7 @@ export class RequirementComponent implements OnInit {
         Validators.required,
         Validators.min(10),
       ]),
+      comments: new FormControl(''),
       slide: this.fb.array([this.newRequirement()]),
     });
   }
@@ -62,11 +63,9 @@ export class RequirementComponent implements OnInit {
   newRequirement(): FormGroup {
     return this.fb.group({
       heading: new FormControl(''),
-      companyName: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
-      comments: new FormControl(''),
       selectType: new FormControl('Select Type', [Validators.required]),
       uploadFile: new FormControl('', [Validators.required]),
     });
