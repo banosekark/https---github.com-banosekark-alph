@@ -28,6 +28,16 @@
               </div>
             </div>
           </div>
+          <!-- start Chip Gride-->
+          <mat-chip-grid #chipGrid aria-label="Slide selection">
+            <mat-chip-row *ngFor="let fruit of slide.controls" (removed)="remove(fruit)">
+              {{fruit}}
+              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <!-- End Chip Gride-->
         </div>
       </div>
       <div class="col-md-6 mb-3 requirement-form">
@@ -35,38 +45,30 @@
           <h2>Add borders</h2>
           <form [formGroup]="requirementForm" (ngSubmit)="onRequirementSubmitted()">
             <mat-form-field appearance="outline">
-              <mat-label>Project Name</mat-label>
-              <input matInput placeholder="Project Name" formControlName="projectName"
-                (change)="onAddProjectNameName($event)">
-              <mat-error>Please enter a valid Full Name</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email" (change)="onAddEmail($event)">
               <mat-error>Please enter a valid email address</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Phone Number</mat-label>
-              <input matInput placeholder="Phone Number" formControlName="phoneNumber" (change)="onAddPhone($event)">
-              <mat-error>Please enter a valid Phone Number</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Add Your Comments</mat-label>
-              <textarea matInput placeholder="Add Your Comments" formControlName="comments"></textarea>
-            </mat-form-field>
-            <mat-divider class="mb-3"></mat-divider>
-            <p class="fw-light">Slide 1</p>
+            <div class="mesurement">
+              <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input matInput placeholder="City" formControlName="city" (change)="onAddingCity($event)">
+                <mat-error>Please enter a valid City</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" formControlName="phoneNumber" (change)="onAddPhone($event)">
+                <mat-error>Please enter a valid Phone Number</mat-error>
+              </mat-form-field>
+            </div>
+            <!-- start form Array -->
             <ng-container formArrayName="slide">
               <div *ngFor="let skill of slide.controls; let i=index">
+                <p class="fw-light">Slide 1</p>
                 <div [formGroupName]="i">
                   <mat-form-field appearance="outline">
                     <mat-label>Heading</mat-label>
-                    <input matInput placeholder="Heading" formControlName="heading" (change)="onAddHeading($event)">
-                  </mat-form-field>
-                  <mat-form-field appearance="outline">
-                    <mat-label>City</mat-label>
-                    <input matInput placeholder="City" formControlName="city" (change)="onAddingCity($event)">
-                    <mat-error>Please enter a valid City</mat-error>
+                    <input matInput placeholder=" Heading" formControlName="heading" (change)="onAddHeading($event)">
                   </mat-form-field>
                   <div class="mesurement">
                     <mat-form-field appearance="outline">
@@ -101,7 +103,9 @@
                     </div>
                   </div>
                   <div class="align-items-end">
-                    <button class="add-slide" mat-raised-button color="accent">+ Add Slide</button>
+                    <input type="button" class="add-slide" mat-raised-button color="accent" (click)="onAddSlide()"
+                      [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="add($event)" value="+ Add Slide" />
                   </div>
 
 

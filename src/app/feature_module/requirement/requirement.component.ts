@@ -9,6 +9,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { RequirementService } from 'src/app/services/requirement.service';
 import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-requirement',
@@ -22,6 +24,7 @@ export class RequirementComponent implements OnInit {
   formData: any = {};
   url: any; //Angular 11, for stricter type
   msg = '';
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = 'Choose File';
@@ -33,6 +36,7 @@ export class RequirementComponent implements OnInit {
   fullName: any;
   emailId: any;
   phoneNumber: any;
+  fruits: any[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
@@ -43,14 +47,13 @@ export class RequirementComponent implements OnInit {
   // requirement form
   pageForm() {
     this.requirementForm = this.fb.group({
-      projectName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      city: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.min(10),
       ]),
-      comments: new FormControl(''),
-      slide: this.fb.array([this.newRequirement()]),
+      slide: this.fb.array([this.newSlide()]),
     });
   }
 
@@ -60,10 +63,9 @@ export class RequirementComponent implements OnInit {
   }
 
   // form array controls
-  newRequirement(): FormGroup {
+  newSlide(): FormGroup {
     return this.fb.group({
       heading: new FormControl(''),
-      city: new FormControl('', [Validators.required]),
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
       selectType: new FormControl('Select Type', [Validators.required]),
@@ -72,8 +74,8 @@ export class RequirementComponent implements OnInit {
   }
 
   // adding form array controls to slide
-  onAddRequirement() {
-    this.slide.push(this.newRequirement());
+  onAddSlide() {
+    this.slide.push(this.newSlide());
   }
 
   onDeleteRequirement() {}
@@ -158,9 +160,6 @@ export class RequirementComponent implements OnInit {
     }
   }
 
-  onAddProjectNameName(e: any) {
-    this.projectName = e.target.value;
-  }
   onAddEmail(e: any) {
     this.emailId = e.target.value;
   }
@@ -183,4 +182,13 @@ export class RequirementComponent implements OnInit {
   onTypeChange(e: any) {
     this.pptType = e;
   }
+
+  remove(a: any) {}
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.fruits.push({ name: value });
+    }
+  }
+  if(value: any) {}
 }

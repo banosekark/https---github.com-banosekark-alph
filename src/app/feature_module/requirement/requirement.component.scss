@@ -26,10 +26,6 @@
       button {
         height: 55px;
       }
-      mat-form-field {
-        width: 100%;
-        margin-bottom: 10px;
-      }
 
       .upload {
         display: inline-flex;
@@ -42,7 +38,10 @@
         }
       }
       .add-slide {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+        &:hover {
+          border: 1px solid #007bff;
+        }
       }
       .button-group {
         display: flex;
