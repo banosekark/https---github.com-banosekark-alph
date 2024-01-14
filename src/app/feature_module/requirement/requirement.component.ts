@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,6 +9,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { RequirementService } from 'src/app/services/requirement.service';
 import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-requirement',
@@ -20,6 +22,21 @@ export class RequirementComponent implements OnInit {
   selectedFile: any = null;
   projectName: string = '';
   formData: any = {};
+  url: any; //Angular 11, for stricter type
+  msg = '';
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  fileAttr = 'Choose File';
+  heading: any;
+  pptWidth: any;
+  pptHeight: any;
+  pptType: any;
+  city: any;
+  fullName: any;
+  emailId: any;
+  phoneNumber: any;
+  fruits: any[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
 
@@ -30,44 +47,43 @@ export class RequirementComponent implements OnInit {
   // requirement form
   pageForm() {
     this.requirementForm = this.fb.group({
-      fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      city: new FormControl('', [Validators.required]),
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.min(10),
       ]),
-      projects: this.fb.array([this.newRequirement()]),
+      slide: this.fb.array([this.newSlide()]),
     });
   }
 
-  // getting projects form array control
-  get projects(): FormArray {
-    return this.requirementForm.controls['projects'] as FormArray;
+  // getting slide form array control
+  get slide(): FormArray {
+    return this.requirementForm.controls['slide'] as FormArray;
   }
 
   // form array controls
-  newRequirement(): FormGroup {
+  newSlide(): FormGroup {
     return this.fb.group({
-      subject: new FormControl(''),
-      companyName: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
+      heading: new FormControl(''),
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
-      comments: new FormControl(''),
       selectType: new FormControl('Select Type', [Validators.required]),
-      upload: new FormControl('', [Validators.required]),
+      uploadImage: new FormControl(this.url, [Validators.required]),
     });
   }
 
-  // adding form array controls to projects
-  onAddRequirement() {
-    this.projects.push(this.newRequirement());
+  // adding form array controls to slide
+  onAddSlide() {
+    this.slide.push(this.newSlide());
   }
 
   onDeleteRequirement() {}
 
   onRequirementSubmitted() {
     this.formData = this.requirementForm.value;
+    this.url = this.formData.slide[0].uploadFile;
+    this.heading = this.formData.slide[0].heading;
     this.openDialog('1000ms', '1500ms');
   }
 
@@ -84,4 +100,95 @@ export class RequirementComponent implements OnInit {
       data: this.formData,
     });
   }
+
+  uploadFileEvt(imgFile: any) {
+    if (imgFile.target.files && imgFile.target.files[0]) {
+      this.fileAttr = '';
+      Array.from(imgFile.target.files).forEach((file: any) => {
+        this.fileAttr += file.name + ' - ';
+      });
+      // HTML5 FileReader API
+      let reader = new FileReader();
+      reader.onload = (e: any) => {
+        let image = new Image();
+        image.src = e.target.result;
+        image.onload = (rs) => {
+          let imgBase64Path = e.target.result;
+        };
+      };
+      reader.readAsDataURL(imgFile.target.files[0]);
+      // Reset if duplicate image uploaded again
+      this.fileInput.nativeElement.value = '';
+    } else {
+      this.fileAttr = 'Choose File';
+    }
+  }
+
+  selectFile(event: any) {
+    //Angular 11, for stricter type
+    if (!event.target.files[0] || event.target.files[0].length == 0) {
+      this.msg = 'You must select an image';
+      return;
+    }
+
+    var mimeType = event.target.files[0].type;
+
+    if (mimeType.match(/image\/*/) == null) {
+      this.msg = 'Only images are supported';
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (_event) => {
+      this.msg = '';
+      this.url = reader.result;
+    };
+  }
+
+  readUrl(event: any) {
+    this.selectedFile = event.target.files[0] ?? null;
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: ProgressEvent) => {
+        this.url = (<FileReader>event.target).result;
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  onAddEmail(e: any) {
+    this.emailId = e.target.value;
+  }
+  onAddPhone(e: any) {
+    this.phoneNumber = e.target.value;
+  }
+  onAddHeading(e: any) {
+    this.heading = e.target.value;
+  }
+  onAddingCity(e: any) {
+    this.city = e.target.value;
+  }
+
+  onAddingWidth(e: any) {
+    this.pptWidth = e.target.value;
+  }
+  onAddingHeight(e: any) {
+    this.pptHeight = e.target.value;
+  }
+  onTypeChange(e: any) {
+    this.pptType = e;
+  }
+
+  remove(a: any) {}
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.fruits.push({ name: value });
+    }
+  }
+  if(value: any) {}
 }

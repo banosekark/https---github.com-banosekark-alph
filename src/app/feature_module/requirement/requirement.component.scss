@@ -1,75 +1,85 @@
-.contact-card {
-  width: 90vw;
-  margin: 20px auto;
-  .card-content {
-    display: flex;
-    justify-content: space-between;
-    img {
-      width: 48%;
-    }
-
-    .requirement-form {
-      width: 50%;
-      mat-form-field {
-        width: 100%;
-        padding: 10px 0;
-      }
-      .mesurement {
+.container-fluid {
+  .ppt-generator {
+    .display {
+      .slide-wrapper {
         display: flex;
         justify-content: space-between;
-        mat-form-field {
-          width: 45%;
+        img {
+          width: 100%;
         }
       }
+      .card {
+        margin-bottom: 10px;
 
+        h5.card-header {
+          margin-bottom: 0;
+        }
+        .card-body {
+          img {
+            margin-bottom: 10px;
+          }
+          span.text-uppercase {
+            display: block;
+          }
+        }
+      }
+    }
+    .requirement-form {
+      button {
+        height: 55px;
+      }
+
+      .upload {
+        display: inline-flex;
+        padding: 0 0 40px;
+        width: 45%;
+
+        .file-name {
+          margin-left: 10px;
+          margin-top: 8px;
+        }
+      }
+      .add-slide {
+        margin-bottom: 30px;
+        &:hover {
+          border: 1px solid #007bff;
+        }
+      }
       .button-group {
         display: flex;
         justify-content: space-between;
         button {
           width: 45%;
-          height: 50px;
         }
-      }
-
-      .action {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        .circle-button {
-          width: 50px;
-          height: 50px;
-        }
-      }
-      input.ng-invalid.ng-touched {
-        border: 2px solid red;
       }
     }
   }
 }
 
-.file-name {
-  margin-left: 1rem; /* or whatever margin you require */
-}
-
-@media (max-width: 650px) {
-  .contact-card {
-    .card-content {
-      img {
-        display: none;
-      }
-
-      .requirement-form {
-        width: 100%;
-        mat-form-field {
-          width: 100%;
-        }
-        .mesurement {
-          mat-form-field {
+//Apply styles starting from medium devices
+@media (min-width: 768px) {
+  .container-fluid {
+    .ppt-generator {
+      .display {
+        .slide-wrapper {
+          .card {
+            h5.card-header {
+            }
+            .card-body {
+              span.text-uppercase {
+                display: inline-block;
+              }
+            }
           }
         }
-        .buttons {
-        }
-        button {
+      }
+      .requirement-form {
+        .mesurement {
+          display: flex;
+          justify-content: space-between;
+          mat-form-field {
+            width: 45%;
+          }
         }
       }
     }
