@@ -13,20 +13,23 @@
           <p><span class="text-uppercase">City :</span> <span class="text-warning"> {{city}}
             </span></p>
           <div class="slide-wrapper">
-            <div class="card col">
-              <h5 class="card-header">Slide</h5>
-              <img *ngIf="url !== undefined" [src]="url" alt="...">
-              <div class="card-body">
-                <p><span class="text-uppercase">Heading :</span> <span class="text-warning"> {{heading}}
-                  </span></p>
-                <p><span class="text-uppercase">Type :</span> <span class="text-warning"> {{pptType}}
-                  </span></p>
-                <p><span class="text-uppercase">Width :</span> <span class="text-warning"> {{pptWidth}}
-                  </span></p>
-                <p><span class="text-uppercase">Height:</span> <span class="text-warning">{{pptHeight}}
-                  </span></p>
+            <div class="col-12">
+              <div class="card col" *ngFor="let item of slide.controls">
+                <h5 class="card-header">Slide</h5>
+                <div class="card-body">
+                  <img *ngIf="url !== undefined" [src]="url" alt="...">
+                  <p><span class="text-uppercase">Heading :</span> <span class="text-warning"> {{heading}}
+                    </span></p>
+                  <p><span class="text-uppercase">Type :</span> <span class="text-warning"> {{pptType}}
+                    </span></p>
+                  <p><span class="text-uppercase">Width :</span> <span class="text-warning"> {{pptWidth}}
+                    </span></p>
+                  <p><span class="text-uppercase">Height:</span> <span class="text-warning">{{pptHeight}}
+                    </span></p>
+                </div>
               </div>
             </div>
+
           </div>
           <!-- start Chip Gride-->
           <mat-chip-grid #chipGrid aria-label="Slide selection">
@@ -98,7 +101,7 @@
                     <!-- upload image -->
                     <div class="upload">
                       <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="upload">
+                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="uploadImage">
                       <span class="file-name">{{selectedFile?.name}}</span>
                     </div>
                   </div>

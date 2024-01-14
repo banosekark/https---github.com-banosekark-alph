@@ -69,7 +69,7 @@ export class RequirementComponent implements OnInit {
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
       selectType: new FormControl('Select Type', [Validators.required]),
-      uploadFile: new FormControl('', [Validators.required]),
+      uploadImage: new FormControl(this.url, [Validators.required]),
     });
   }
 
