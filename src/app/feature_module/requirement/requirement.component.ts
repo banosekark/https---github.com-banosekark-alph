@@ -9,6 +9,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { RequirementService } from 'src/app/services/requirement.service';
 import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { PptProjectService } from 'src/app/services/ppt-project.service';
 
 @Component({
   selector: 'app-requirement',
@@ -22,6 +25,7 @@ export class RequirementComponent implements OnInit {
   formData: any = {};
   url: any; //Angular 11, for stricter type
   msg = '';
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   @ViewChild('fileInput') fileInput!: ElementRef;
   fileAttr = 'Choose File';
@@ -32,9 +36,14 @@ export class RequirementComponent implements OnInit {
   city: any;
   fullName: any;
   emailId: any;
-  phoneNumber: any;
+  contactNumber: any;
+  fruits: any[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private ProjectService: PptProjectService
+  ) {}
 
   ngOnInit(): void {
     this.pageForm();
@@ -43,13 +52,13 @@ export class RequirementComponent implements OnInit {
   // requirement form
   pageForm() {
     this.requirementForm = this.fb.group({
-      projectName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phoneNumber: new FormControl('', [
+      city: new FormControl('', [Validators.required]),
+      contactNumber: new FormControl('', [
         Validators.required,
         Validators.min(10),
       ]),
-      slide: this.fb.array([this.newRequirement()]),
+      slide: this.fb.array([this.newSlide()]),
     });
   }
 
@@ -59,22 +68,19 @@ export class RequirementComponent implements OnInit {
   }
 
   // form array controls
-  newRequirement(): FormGroup {
+  newSlide(): FormGroup {
     return this.fb.group({
       heading: new FormControl(''),
-      companyName: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
-      comments: new FormControl(''),
       selectType: new FormControl('Select Type', [Validators.required]),
-      uploadFile: new FormControl('', [Validators.required]),
+      image: new FormControl(this.url, [Validators.required]),
     });
   }
 
   // adding form array controls to slide
-  onAddRequirement() {
-    this.slide.push(this.newRequirement());
+  onAddSlide() {
+    this.slide.push(this.newSlide());
   }
 
   onDeleteRequirement() {}
@@ -84,6 +90,7 @@ export class RequirementComponent implements OnInit {
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     this.openDialog('1000ms', '1500ms');
+    this.uploadPpt();
   }
 
   // Dialog Box
@@ -159,14 +166,11 @@ export class RequirementComponent implements OnInit {
     }
   }
 
-  onAddProjectNameName(e: any) {
-    this.projectName = e.target.value;
-  }
   onAddEmail(e: any) {
     this.emailId = e.target.value;
   }
   onAddPhone(e: any) {
-    this.phoneNumber = e.target.value;
+    this.contactNumber = e.target.value;
   }
   onAddHeading(e: any) {
     this.heading = e.target.value;
@@ -183,5 +187,33 @@ export class RequirementComponent implements OnInit {
   }
   onTypeChange(e: any) {
     this.pptType = e;
+  }
+
+  remove(a: any) {}
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.fruits.push({ name: value });
+    }
+  }
+  if(value: any) {}
+
+  uploadPpt() {
+    let project = [
+      {
+        projectName: this.formData.projectName,
+        email: this.formData.email,
+        contactNumber: this.formData.contactNumber,
+        city: this.formData.city,
+        heading: this.formData.slide[0].heading,
+        type: this.formData.slide[0].type,
+        width: this.formData.slide[0].width,
+        height: this.formData.slide[0].height,
+        image: this.formData.slide[0].image,
+      },
+    ];
+    this.ProjectService.addProject(project).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

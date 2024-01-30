@@ -8,14 +8,16 @@
           width: 100%;
         }
       }
-      .card:nth-child(odd) {
-        margin-right: 10px;
-      }
       .card {
+        margin-bottom: 10px;
+
         h5.card-header {
           margin-bottom: 0;
         }
         .card-body {
+          img {
+            margin-bottom: 10px;
+          }
           span.text-uppercase {
             display: block;
           }
@@ -23,13 +25,25 @@
       }
     }
     .requirement-form {
-      mat-form-field {
-        width: 100%;
+      button {
+        height: 55px;
       }
 
       .upload {
         display: inline-flex;
         padding: 0 0 40px;
+        width: 45%;
+
+        .file-name {
+          margin-left: 10px;
+          margin-top: 8px;
+        }
+      }
+      .add-slide {
+        margin-bottom: 30px;
+        &:hover {
+          border: 1px solid #007bff;
+        }
       }
       .button-group {
         display: flex;
@@ -56,6 +70,15 @@
                 display: inline-block;
               }
             }
+          }
+        }
+      }
+      .requirement-form {
+        .mesurement {
+          display: flex;
+          justify-content: space-between;
+          mat-form-field {
+            width: 45%;
           }
         }
       }
