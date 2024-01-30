@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\alphaEnterprises.API.props" />
+</Project>

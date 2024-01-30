@@ -8,7 +8,7 @@
             </span></p>
           <p><span class="text-uppercase">Email :</span> <span class="text-warning"> {{emailId}}
             </span></p>
-          <p><span class="text-uppercase">Phone Number :</span> <span class="text-warning"> {{phoneNumber}}
+          <p><span class="text-uppercase">Phone Number :</span> <span class="text-warning"> {{contactNumber}}
             </span></p>
           <p><span class="text-uppercase">City :</span> <span class="text-warning"> {{city}}
             </span></p>
@@ -60,7 +60,8 @@
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" formControlName="phoneNumber" (change)="onAddPhone($event)">
+                <input matInput placeholder="Phone Number" formControlName="contactNumber"
+                  (change)="onAddPhone($event)">
                 <mat-error>Please enter a valid Phone Number</mat-error>
               </mat-form-field>
             </div>
@@ -101,7 +102,7 @@
                     <!-- upload image -->
                     <div class="upload">
                       <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="uploadImage">
+                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="image">
                       <span class="file-name">{{selectedFile?.name}}</span>
                     </div>
                   </div>

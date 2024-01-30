@@ -11,6 +11,7 @@ import { RequirementService } from 'src/app/services/requirement.service';
 import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { PptProjectService } from 'src/app/services/ppt-project.service';
 
 @Component({
   selector: 'app-requirement',
@@ -35,10 +36,14 @@ export class RequirementComponent implements OnInit {
   city: any;
   fullName: any;
   emailId: any;
-  phoneNumber: any;
+  contactNumber: any;
   fruits: any[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private ProjectService: PptProjectService
+  ) {}
 
   ngOnInit(): void {
     this.pageForm();
@@ -49,7 +54,7 @@ export class RequirementComponent implements OnInit {
     this.requirementForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       city: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [
+      contactNumber: new FormControl('', [
         Validators.required,
         Validators.min(10),
       ]),
@@ -69,7 +74,7 @@ export class RequirementComponent implements OnInit {
       width: new FormControl('', [Validators.required]),
       height: new FormControl('', [Validators.required]),
       selectType: new FormControl('Select Type', [Validators.required]),
-      uploadImage: new FormControl(this.url, [Validators.required]),
+      image: new FormControl(this.url, [Validators.required]),
     });
   }
 
@@ -85,6 +90,7 @@ export class RequirementComponent implements OnInit {
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     this.openDialog('1000ms', '1500ms');
+    this.uploadPpt();
   }
 
   // Dialog Box
@@ -164,7 +170,7 @@ export class RequirementComponent implements OnInit {
     this.emailId = e.target.value;
   }
   onAddPhone(e: any) {
-    this.phoneNumber = e.target.value;
+    this.contactNumber = e.target.value;
   }
   onAddHeading(e: any) {
     this.heading = e.target.value;
@@ -191,4 +197,23 @@ export class RequirementComponent implements OnInit {
     }
   }
   if(value: any) {}
+
+  uploadPpt() {
+    let project = [
+      {
+        projectName: this.formData.projectName,
+        email: this.formData.email,
+        contactNumber: this.formData.contactNumber,
+        city: this.formData.city,
+        heading: this.formData.slide[0].heading,
+        type: this.formData.slide[0].type,
+        width: this.formData.slide[0].width,
+        height: this.formData.slide[0].height,
+        image: this.formData.slide[0].image,
+      },
+    ];
+    this.ProjectService.addProject(project).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }
