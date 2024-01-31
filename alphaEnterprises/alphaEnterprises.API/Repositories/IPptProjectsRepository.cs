@@ -6,7 +6,7 @@ namespace alphaEnterprises.API.Repositories
   public interface IPptProjectsRepository
   {
     Task<List<PptProject>> GetAllAsync();
-    Task<PptProject?> GetByIdAsync();
+    Task<PptProject?> GetByIdAsync(Guid id);
     Task<PptProject>CreateAsync(PptProject pptProject);
 
   }
