@@ -16,9 +16,9 @@ namespace alphaEnterprises.API.Models.DTO
 
         public string Type { get; set; }
 
-        public Double Width { get; set; }
+        public string Width { get; set; }
 
-        public Double Height { get; set; }
+        public string Height { get; set; }
 
         public required string Image { get; set; }
   }

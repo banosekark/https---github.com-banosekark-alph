@@ -90,7 +90,7 @@ export class RequirementComponent implements OnInit {
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     this.openDialog('1000ms', '1500ms');
-    this.uploadPpt();
+    this.AddProject();
   }
 
   // Dialog Box
@@ -196,24 +196,29 @@ export class RequirementComponent implements OnInit {
       this.fruits.push({ name: value });
     }
   }
-  if(value: any) {}
 
-  uploadPpt() {
+  AddProject() {
+    let payload;
     let project = [
       {
-        projectName: this.formData.projectName,
         email: this.formData.email,
         contactNumber: this.formData.contactNumber,
         city: this.formData.city,
         heading: this.formData.slide[0].heading,
-        type: this.formData.slide[0].type,
-        width: this.formData.slide[0].width,
-        height: this.formData.slide[0].height,
+        type: this.formData.slide[0].selectType,
+        width: +this.formData.slide[0].width,
+        height: +this.formData.slide[0].height,
         image: this.formData.slide[0].image,
       },
     ];
-    this.ProjectService.addProject(project).subscribe((res) => {
-      console.log(res);
+
+    project.forEach((e) => {
+      payload = e;
+    });
+
+    console.log(payload);
+    this.ProjectService.addProject(payload).subscribe((res) => {
+      console.log('res', res);
     });
   }
 }

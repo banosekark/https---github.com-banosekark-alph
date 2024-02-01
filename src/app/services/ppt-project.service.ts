@@ -11,11 +11,9 @@ export class PptProjectService {
 
   // Post
 
-  addProject(project: any): Observable<any> {
+  addProject(project: any) {
     const headers = { 'content-type': 'application/json' };
-    const body = JSON.stringify(project);
-    return this.http.post(this.baseURL + '/api/PptProjects', body, {
-      headers: headers,
-    });
+    // const body = JSON.stringify(project);
+    return this.http.post(this.baseURL + '/api/PptProjects', project);
   }
 }

@@ -137,3 +137,4 @@ C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprise
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\obj\Debug\net8.0\ref\alphaEnterprises.API.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Newtonsoft.Json.dll
