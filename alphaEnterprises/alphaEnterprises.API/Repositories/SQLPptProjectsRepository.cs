@@ -34,5 +34,23 @@ namespace alphaEnterprises.API.Repositories
             return pptProject;
               
         }
+
+    public Task<PptProject?> UpdateAsync(PptProject pptProject)
+    {
+      throw new NotImplementedException();
+    }
+
+    public async Task<PptProject?> DeleteAsync(Guid id)
+    {
+      var existingProject = await dbContext.PptProjects.FirstOrDefaultAsync(x => x.Id == id);
+
+      if (existingProject == null)
+      {
+        return null;
+      }
+      dbContext.PptProjects.Remove(existingProject);
+      await dbContext.SaveChangesAsync();
+      return existingProject;
+    }
   }
 }
