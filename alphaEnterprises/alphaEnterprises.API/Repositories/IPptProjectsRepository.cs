@@ -8,6 +8,7 @@ namespace alphaEnterprises.API.Repositories
     Task<List<PptProject>> GetAllAsync();
     Task<PptProject?> GetByIdAsync(Guid id);
     Task<PptProject>CreateAsync(PptProject pptProject);
+    Task<PptProject?> DeleteAsync(Guid id);
 
   }
 }

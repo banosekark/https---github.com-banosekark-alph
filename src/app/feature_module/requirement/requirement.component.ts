@@ -90,7 +90,7 @@ export class RequirementComponent implements OnInit {
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     this.openDialog('1000ms', '1500ms');
-    this.uploadPpt();
+    this.AddProject();
   }
 
   // Dialog Box
@@ -197,7 +197,7 @@ export class RequirementComponent implements OnInit {
     }
   }
 
-  uploadPpt() {
+  AddProject() {
     let payload;
     let project = [
       {

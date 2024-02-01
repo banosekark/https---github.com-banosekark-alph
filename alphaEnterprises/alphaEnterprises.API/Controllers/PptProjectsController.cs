@@ -66,49 +66,69 @@ namespace alphaEnterprises.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddProjectRequestDto addProjectRequestDto)
         {
-            // Map DTO to Domain Modal
-            var pptProjectDomainModal = mapper.Map<PptProject>(addProjectRequestDto);
-            //var pptProjectDomainModal = new PptProject
-            //{
-            //  ProjectName = addProjectRequestDto.ProjectName,
-            //  Email = addProjectRequestDto.Email,
-            //  City = addProjectRequestDto.City,
-            //  ContactNumber = addProjectRequestDto.ContactNumber,
-            //  Heading = addProjectRequestDto.Heading,
-            //  Width = addProjectRequestDto.Width,
-            //  Height  = addProjectRequestDto.Height,
-            //  Type = addProjectRequestDto.Type,
-            //  Image = addProjectRequestDto.Image,
-            //};
+              // Map DTO to Domain Modal
+              var pptProjectDomainModal = mapper.Map<PptProject>(addProjectRequestDto);
+              //var pptProjectDomainModal = new PptProject
+              //{
+              //  ProjectName = addProjectRequestDto.ProjectName,
+              //  Email = addProjectRequestDto.Email,
+              //  City = addProjectRequestDto.City,
+              //  ContactNumber = addProjectRequestDto.ContactNumber,
+              //  Heading = addProjectRequestDto.Heading,
+              //  Width = addProjectRequestDto.Width,
+              //  Height  = addProjectRequestDto.Height,
+              //  Type = addProjectRequestDto.Type,
+              //  Image = addProjectRequestDto.Image,
+              //};
 
 
         // Use Domain Modal to Create Region
         pptProjectDomainModal = await pptProjectsRepository.CreateAsync(pptProjectDomainModal);
 
 
-      // Map Domain Modal back to DTO
-      var pptProjectDto = mapper.Map<PptProjectDto>(pptProjectDomainModal);
+        // Map Domain Modal back to DTO
+        var pptProjectDto = mapper.Map<PptProjectDto>(pptProjectDomainModal);
 
-      //var pptProjectDto = new PptProjectDto
-      //{
-      //  Id = pptProjectDomainModal.Id,
-      //  ProjectName = addProjectRequestDto.ProjectName,
-      //  Email = addProjectRequestDto.Email,
-      //  City = addProjectRequestDto.City,
-      //  ContactNumber = addProjectRequestDto.ContactNumber,
-      //  Heading = addProjectRequestDto.Heading,
-      //  Width = addProjectRequestDto.Width,
-      //  Height = addProjectRequestDto.Height,
-      //  Type = addProjectRequestDto.Type,
-      //  Image = addProjectRequestDto.Image,
+            //var pptProjectDto = new PptProjectDto
+            //{
+            //  Id = pptProjectDomainModal.Id,
+            //  ProjectName = addProjectRequestDto.ProjectName,
+            //  Email = addProjectRequestDto.Email,
+            //  City = addProjectRequestDto.City,
+            //  ContactNumber = addProjectRequestDto.ContactNumber,
+            //  Heading = addProjectRequestDto.Heading,
+            //  Width = addProjectRequestDto.Width,
+            //  Height = addProjectRequestDto.Height,
+            //  Type = addProjectRequestDto.Type,
+            //  Image = addProjectRequestDto.Image,
 
 
-      //};
-      //return CreatedAtAction(nameof(GetById), new { id = pptProjectDto.Id }, pptProjectDto);
+            //};
+            //return CreatedAtAction(nameof(GetById), new { id = pptProjectDto.Id }, pptProjectDto);
 
-      return Ok(pptProjectDto);
+            return Ok(pptProjectDto);
 
+        }
+
+
+    // Delete Project
+    //Delete:https://localhost:7234/api/pptProjects/{id}
+    [HttpDelete]
+    [Route("{id:Guid}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    {
+        var pptProjectDomainModal = await pptProjectsRepository.DeleteAsync(id);
+      //var pptProjectDomainModal = dbContext.PptProjects.FirstOrDefault(x => x.Id == id);
+
+      if (pptProjectDomainModal == null)
+      {
+        return NotFound();
       }
+      //dbContext.PptProjects.Remove(pptProjectDomainModal);
+      //dbContext.SaveChanges();
+
+      return Ok(mapper.Map<PptProjectDto>(pptProjectDomainModal));
     }
   }
+}
 
