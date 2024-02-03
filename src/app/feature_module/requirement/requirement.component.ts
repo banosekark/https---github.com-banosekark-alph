@@ -93,7 +93,7 @@ export class RequirementComponent implements OnInit {
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     //this.openDialog('1000ms', '1500ms');
-    //this.AddProject();
+    this.AddProject();
     this.tostService.success({
       detail: 'Success',
       summary: 'Enquiry Added',
@@ -120,10 +120,8 @@ export class RequirementComponent implements OnInit {
     project.forEach((e) => {
       payload = e;
     });
-
-    console.log(payload);
     this.ProjectService.addProject(payload).subscribe((res) => {
-      console.log('res', res);
+      complete: () => console.info('complete');
     });
   }
 

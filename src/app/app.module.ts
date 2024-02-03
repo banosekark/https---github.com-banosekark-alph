@@ -26,11 +26,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { ProjectsComponent } from './feature_module/projects/projects.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { LoaderComponent } from './shared_module/loader/loader.component';
+import { LoaderInterceptor } from './shared_module/services/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { NgToastModule } from 'ng-angular-popup';
     GeneratePptDirective,
     GeneratePptComponent,
     ProjectsComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,9 @@ import { NgToastModule } from 'ng-angular-popup';
     MatListModule,
     NgToastModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
