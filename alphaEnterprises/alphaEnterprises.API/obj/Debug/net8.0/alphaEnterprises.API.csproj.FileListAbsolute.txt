@@ -5,6 +5,8 @@ C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprise
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\alphaEnterprises.API.runtimeconfig.json
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\alphaEnterprises.API.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\alphaEnterprises.API.pdb
+C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.dll
+C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Azure.Core.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Azure.Identity.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Humanizer.dll
@@ -32,6 +34,7 @@ C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprise
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -135,6 +138,3 @@ C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprise
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\obj\Debug\net8.0\alphaEnterprises.API.pdb
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\obj\Debug\net8.0\alphaEnterprises.API.genruntimeconfig.cache
 C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\obj\Debug\net8.0\ref\alphaEnterprises.API.dll
-C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.dll
-C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Kamlesh\Clients\allph-enterprises\application\version-2\Alpha\alphaEnterprises\alphaEnterprises.API\bin\Debug\net8.0\Newtonsoft.Json.dll
