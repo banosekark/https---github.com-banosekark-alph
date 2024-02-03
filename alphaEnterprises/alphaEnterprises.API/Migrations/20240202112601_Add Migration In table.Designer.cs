@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using alphaEnterprises.API.Data;
 
@@ -11,9 +12,11 @@ using alphaEnterprises.API.Data;
 namespace alphaEnterprises.API.Migrations
 {
     [DbContext(typeof(AlphaDbContext))]
-    partial class AlphaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240202112601_Add Migration In table")]
+    partial class AddMigrationIntable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,12 +60,13 @@ namespace alphaEnterprises.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("FileSizeInBytes")
-                        .HasColumnType("bigint");
+                    b.Property<string>("FileSizeInBytes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AImages");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("alphaEnterprises.API.Models.Domain.PptProject", b =>
