@@ -12,6 +12,7 @@ import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-requirement',
@@ -42,7 +43,8 @@ export class RequirementComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private ProjectService: PptProjectService
+    private ProjectService: PptProjectService,
+    private tostService: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -85,12 +87,44 @@ export class RequirementComponent implements OnInit {
 
   onDeleteRequirement() {}
 
+  //SUBMIT form
   onRequirementSubmitted() {
     this.formData = this.requirementForm.value;
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
-    this.openDialog('1000ms', '1500ms');
-    this.AddProject();
+    //this.openDialog('1000ms', '1500ms');
+    //this.AddProject();
+    this.tostService.success({
+      detail: 'Success',
+      summary: 'Enquiry Added',
+      duration: 3000,
+    });
+  }
+
+  // POST project data to API
+  AddProject() {
+    let payload;
+    let project = [
+      {
+        email: this.formData.email,
+        contactNumber: this.formData.contactNumber,
+        city: this.formData.city,
+        heading: this.formData.slide[0].heading,
+        type: this.formData.slide[0].selectType,
+        width: +this.formData.slide[0].width,
+        height: +this.formData.slide[0].height,
+        image: this.formData.slide[0].image,
+      },
+    ];
+
+    project.forEach((e) => {
+      payload = e;
+    });
+
+    console.log(payload);
+    this.ProjectService.addProject(payload).subscribe((res) => {
+      console.log('res', res);
+    });
   }
 
   // Dialog Box
@@ -195,30 +229,5 @@ export class RequirementComponent implements OnInit {
     if (value) {
       this.fruits.push({ name: value });
     }
-  }
-
-  AddProject() {
-    let payload;
-    let project = [
-      {
-        email: this.formData.email,
-        contactNumber: this.formData.contactNumber,
-        city: this.formData.city,
-        heading: this.formData.slide[0].heading,
-        type: this.formData.slide[0].selectType,
-        width: +this.formData.slide[0].width,
-        height: +this.formData.slide[0].height,
-        image: this.formData.slide[0].image,
-      },
-    ];
-
-    project.forEach((e) => {
-      payload = e;
-    });
-
-    console.log(payload);
-    this.ProjectService.addProject(payload).subscribe((res) => {
-      console.log('res', res);
-    });
   }
 }

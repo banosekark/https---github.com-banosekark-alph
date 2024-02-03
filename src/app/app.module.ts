@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { ProjectsComponent } from './feature_module/projects/projects.component';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { MatListModule } from '@angular/material/list';
     UploadFormComponent,
     GeneratePptDirective,
     GeneratePptComponent,
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,8 +65,10 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatDialogModule,
     MatListModule,
+    NgToastModule,
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
