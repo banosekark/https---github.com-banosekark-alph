@@ -13,6 +13,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
 import { NgToastService } from 'ng-angular-popup';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-requirement',
@@ -35,25 +36,36 @@ export class RequirementComponent implements OnInit {
   pptHeight: any;
   pptType: any;
   city: any;
-  fullName: any;
+  projName: any;
   emailId: any;
   contactNumber: any;
-  fruits: any[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
+  projectIdToUpdate!: number;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     private ProjectService: PptProjectService,
-    private tostService: NgToastService
+    private tostService: NgToastService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.pageForm();
+    this.activatedRoute.params.subscribe((value) => {
+      console.log('value', value);
+      this.projectIdToUpdate = value['id'];
+      this.ProjectService.getProjectById(this.projectIdToUpdate).subscribe(
+        (res) => {
+          console.log(res);
+        }
+      );
+    });
   }
 
   // requirement form
   pageForm() {
     this.requirementForm = this.fb.group({
+      projectName: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       city: new FormControl('', [Validators.required]),
       contactNumber: new FormControl('', [
@@ -85,20 +97,30 @@ export class RequirementComponent implements OnInit {
     this.slide.push(this.newSlide());
   }
 
+  onFillFormToUpdate(project: any) {
+    this.requirementForm.setValue({
+      projectName: project.projectName,
+      email: project.email,
+      contactNumber: project.contactNumber,
+      city: project.city,
+      heading: project.heading,
+      type: project.selectType,
+      width: project.width,
+      height: project.height,
+      image: project.image,
+    });
+  }
+
   onDeleteRequirement() {}
 
   //SUBMIT form
   onRequirementSubmitted() {
     this.formData = this.requirementForm.value;
+    console.log(this.formData);
     this.url = this.formData.slide[0].uploadFile;
     this.heading = this.formData.slide[0].heading;
     //this.openDialog('1000ms', '1500ms');
     this.AddProject();
-    this.tostService.success({
-      detail: 'Success',
-      summary: 'Enquiry Added',
-      duration: 3000,
-    });
   }
 
   // POST project data to API
@@ -106,6 +128,7 @@ export class RequirementComponent implements OnInit {
     let payload;
     let project = [
       {
+        projectName: this.formData.projectName,
         email: this.formData.email,
         contactNumber: this.formData.contactNumber,
         city: this.formData.city,
@@ -121,7 +144,14 @@ export class RequirementComponent implements OnInit {
       payload = e;
     });
     this.ProjectService.addProject(payload).subscribe((res) => {
-      complete: () => console.info('complete');
+      //Adding Tost message
+      this.tostService.success({
+        detail: 'Success',
+        summary: 'Enquiry Added',
+        duration: 5000,
+      });
+      //Reset Form
+      //this.requirementForm.reset();
     });
   }
 
@@ -198,6 +228,10 @@ export class RequirementComponent implements OnInit {
     }
   }
 
+  onAddProjectName(e: any) {
+    this.projName = e.target.value;
+  }
+
   onAddEmail(e: any) {
     this.emailId = e.target.value;
   }
@@ -224,8 +258,5 @@ export class RequirementComponent implements OnInit {
   remove(a: any) {}
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-    if (value) {
-      this.fruits.push({ name: value });
-    }
   }
 }

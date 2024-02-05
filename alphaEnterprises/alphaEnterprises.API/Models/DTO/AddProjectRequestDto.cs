@@ -2,6 +2,7 @@ namespace alphaEnterprises.API.Models.DTO
 {
   public class AddProjectRequestDto
   {
+    public string ProjectName { get; set; }
     public string Email { get; set; }
 
     public string ContactNumber { get; set; }
