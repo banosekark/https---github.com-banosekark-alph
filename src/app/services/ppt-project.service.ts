@@ -11,10 +11,20 @@ export class PptProjectService {
 
   constructor(private http: HttpClient) {}
 
-  // Post
+  //GET All Project
+  getAllProjects() {
+    return this.http.get(this.baseURL + '/api/PptProjects');
+  }
 
+  //GET Project By Id
+
+  getProjectById(id: any) {
+    return this.http.get(`${this.baseURL}/api/PptProjects/${id}`);
+  }
+
+  // POST
   addProject(project: any) {
-    const headers = { 'content-type': 'application/json' };
+    // const headers = { 'content-type': 'application/json' };
     // const body = JSON.stringify(project);
     return this.http.post(this.baseURL + '/api/PptProjects', project);
   }
