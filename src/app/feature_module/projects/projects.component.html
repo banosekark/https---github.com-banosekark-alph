@@ -68,7 +68,8 @@
             [icon]="eyeIcon"></fa-icon></button>
         <button (click)="onProjectEdit(row.id)" mat-icon-button color="warn"><fa-icon
             [icon]="pencilIcon"></fa-icon></button>
-        <button mat-icon-button color="warn"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+        <button (click)="onDeleteProject(row.id)" mat-icon-button color="warn"><fa-icon
+            [icon]="deleteIcon"></fa-icon></button>
       </td>
     </ng-container>
 

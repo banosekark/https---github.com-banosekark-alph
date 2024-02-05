@@ -28,4 +28,14 @@ export class PptProjectService {
     // const body = JSON.stringify(project);
     return this.http.post(this.baseURL + '/api/PptProjects', project);
   }
+
+  //Update
+  updateProject(project: any, id: any) {
+    return this.http.put(this.baseURL + '/api/PptProjects', project);
+  }
+
+  //DELETE
+  deleteProject(id: any) {
+    return this.http.delete(`${this.baseURL}/api/PptProjects/${id}`);
+  }
 }

@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
 import { faEye, faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Route, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-projects',
@@ -37,7 +38,8 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private pptProjectService: PptProjectService,
-    private router: Router
+    private router: Router,
+    private tostService: NgToastService
   ) {}
   ngOnInit(): void {
     this.getProjects();
@@ -70,5 +72,18 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   // Edit Project
   onProjectEdit(id: number) {
     this.router.navigate(['update', id]);
+  }
+
+  //Delete Project
+  // Delete Project
+  onDeleteProject(id: any) {
+    this.pptProjectService.deleteProject(id).subscribe((res) => {
+      this.tostService.success({
+        detail: 'SUCCESS',
+        summary: 'Delete Successfully',
+        duration: 5000,
+      });
+      this.getProjects();
+    });
   }
 }

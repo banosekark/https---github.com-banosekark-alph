@@ -13,7 +13,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
 import { NgToastService } from 'ng-angular-popup';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-requirement',
@@ -39,14 +39,16 @@ export class RequirementComponent implements OnInit {
   projName: any;
   emailId: any;
   contactNumber: any;
-  projectIdToUpdate!: number;
+  projectIdToUpdate!: any;
+  isUpdateActive: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     private ProjectService: PptProjectService,
     private tostService: NgToastService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +58,8 @@ export class RequirementComponent implements OnInit {
       this.projectIdToUpdate = value['id'];
       this.ProjectService.getProjectById(this.projectIdToUpdate).subscribe(
         (res) => {
-          console.log(res);
+          this.isUpdateActive = true;
+          this.onFillFormToUpdate(res);
         }
       );
     });
@@ -103,11 +106,13 @@ export class RequirementComponent implements OnInit {
       email: project.email,
       contactNumber: project.contactNumber,
       city: project.city,
-      heading: project.heading,
-      type: project.selectType,
-      width: project.width,
-      height: project.height,
-      image: project.image,
+      slide: {
+        heading: project.heading,
+        type: project.selectType,
+        width: project.width,
+        height: project.height,
+        image: project.image,
+      },
     });
   }
 
@@ -121,6 +126,27 @@ export class RequirementComponent implements OnInit {
     this.heading = this.formData.slide[0].heading;
     //this.openDialog('1000ms', '1500ms');
     this.AddProject();
+  }
+
+  //Update Project
+  onUpdate() {
+    let payload;
+    // Create API to Update the Value
+
+    this.ProjectService.updateProject(
+      payload,
+      this.projectIdToUpdate
+    ).subscribe((res) => {
+      //Adding Tost message
+      this.tostService.success({
+        detail: 'Success',
+        summary: 'Enquiry Updated',
+        duration: 5000,
+      });
+      //Reset Form
+      this.requirementForm.reset();
+      this.router.navigate(['requirement']);
+    });
   }
 
   // POST project data to API
@@ -151,7 +177,7 @@ export class RequirementComponent implements OnInit {
         duration: 5000,
       });
       //Reset Form
-      //this.requirementForm.reset();
+      this.requirementForm.reset();
     });
   }
 
