@@ -4,7 +4,7 @@ namespace alphaEnterprises.API.Models.DTO
   {
         public Guid Id { get; set; }
 
-        public string ProjectName { get; set; }
+        public string? ProjectName { get; set; }
 
         public string Email { get; set; }
 

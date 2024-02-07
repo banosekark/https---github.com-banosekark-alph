@@ -1,0 +1,14 @@
+.container-fluid {
+  .top {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      height: 55px;
+    }
+    mat-form-field {
+      width: auto !important;
+      margin-bottom: 0;
+    }
+  }
+}

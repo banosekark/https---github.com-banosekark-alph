@@ -33,6 +33,8 @@ import { ProjectsComponent } from './feature_module/projects/projects.component'
 import { NgToastModule } from 'ng-angular-popup';
 import { LoaderComponent } from './shared_module/loader/loader.component';
 import { LoaderInterceptor } from './shared_module/services/loader.interceptor';
+import { MatTableModule } from '@angular/material/table';
+import { ProjectDetailComponent } from './feature_module/projects/project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { LoaderInterceptor } from './shared_module/services/loader.interceptor';
     GeneratePptComponent,
     ProjectsComponent,
     LoaderComponent,
+    ProjectDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,7 @@ import { LoaderInterceptor } from './shared_module/services/loader.interceptor';
     MatDividerModule,
     MatDialogModule,
     MatListModule,
+    MatTableModule,
     NgToastModule,
   ],
   providers: [

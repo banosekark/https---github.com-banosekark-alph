@@ -16,8 +16,13 @@ export class LoaderInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
     return next.handle(request).pipe(
       tap((event) => {
-        this.pptProjectService.loader.next(true);
+        this.pptProjectService.loader.next(false);
         if (event.type == HttpEventType.Response) {
+          //When response is 202 API is in progress
+          if (event.status == 202) {
+            //loader is false
+            this.pptProjectService.loader.next(true);
+          }
           //When response is 200
           if (event.status == 200) {
             //loader is false

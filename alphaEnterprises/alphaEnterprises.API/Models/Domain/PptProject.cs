@@ -4,6 +4,9 @@ namespace alphaEnterprises.API.Models.Domain
   {
       public Guid Id { get; set; }
 
+
+      public string? ProjectName { get; set; }
+
       public string Email { get; set; }
 
       public string ContactNumber { get; set; }
