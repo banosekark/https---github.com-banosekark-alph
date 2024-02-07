@@ -6,7 +6,12 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
-import { faEye, faPencil, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faEye,
+  faPencil,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import { Route, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 
@@ -21,6 +26,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   eyeIcon = faEye;
   pencilIcon = faPencil;
   deleteIcon = faTrashCan;
+  backIcon = faArrowLeft;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   public displayedColumns: string[] = [

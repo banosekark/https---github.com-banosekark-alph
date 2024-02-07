@@ -14,6 +14,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
 import { NgToastService } from 'ng-angular-popup';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorService } from 'src/app/shared_module/services/error.service';
 
 @Component({
   selector: 'app-requirement',
@@ -41,6 +42,7 @@ export class RequirementComponent implements OnInit {
   contactNumber: any;
   projectIdToUpdate!: any;
   isUpdateActive: boolean = false;
+  errorMsg = this.errorService.errorsMsg;
 
   constructor(
     private fb: FormBuilder,
@@ -48,20 +50,22 @@ export class RequirementComponent implements OnInit {
     private ProjectService: PptProjectService,
     private tostService: NgToastService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
     this.pageForm();
     this.activatedRoute.params.subscribe((value) => {
-      console.log('value', value);
       this.projectIdToUpdate = value['id'];
-      this.ProjectService.getProjectById(this.projectIdToUpdate).subscribe(
-        (res) => {
-          this.isUpdateActive = true;
-          this.onFillFormToUpdate(res);
-        }
-      );
+      if (this.projectIdToUpdate) {
+        this.ProjectService.getProjectById(this.projectIdToUpdate).subscribe(
+          (res) => {
+            this.isUpdateActive = true;
+            this.onFillFormToUpdate(res);
+          }
+        );
+      }
     });
   }
 
@@ -136,16 +140,25 @@ export class RequirementComponent implements OnInit {
     this.ProjectService.updateProject(
       payload,
       this.projectIdToUpdate
-    ).subscribe((res) => {
-      //Adding Tost message
-      this.tostService.success({
-        detail: 'Success',
-        summary: 'Enquiry Updated',
-        duration: 5000,
-      });
-      //Reset Form
-      this.requirementForm.reset();
-      this.router.navigate(['requirement']);
+    ).subscribe({
+      next: (v) => console.log(v),
+      error: (err) =>
+        this.tostService.error({
+          //Adding Tost message
+          detail: 'ERROR',
+          summary: err.message,
+          duration: 5000,
+        }),
+      complete: () => {
+        this.tostService.success({
+          //Adding Tost message
+          detail: 'Success',
+          summary: 'Enquiry Updated',
+          duration: 5000,
+        });
+        this.requirementForm.reset();
+        this.router.navigate(['requirement']);
+      },
     });
   }
 
@@ -169,15 +182,25 @@ export class RequirementComponent implements OnInit {
     project.forEach((e) => {
       payload = e;
     });
-    this.ProjectService.addProject(payload).subscribe((res) => {
-      //Adding Tost message
-      this.tostService.success({
-        detail: 'Success',
-        summary: 'Enquiry Added',
-        duration: 5000,
-      });
-      //Reset Form
-      this.requirementForm.reset();
+    this.ProjectService.addProject(payload).subscribe({
+      next: (v) => console.log(v),
+      error: (err) => {
+        console.log(err);
+        this.tostService.error({
+          //Adding Tost message
+          detail: 'ERROR',
+          summary: err.message,
+          duration: 5000,
+        });
+      },
+
+      complete: () =>
+        this.tostService.success({
+          //Adding Tost message
+          detail: 'Success',
+          summary: 'Enquiry Added',
+          duration: 5000,
+        }),
     });
   }
 

@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { config } from '../config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PptProjectService {
-  baseURL: string = 'https://localhost:7234';
+  baseURL: string = config.API_URL;
   loader = new BehaviorSubject<Boolean>(false);
+  error: any;
 
   constructor(private http: HttpClient) {}
 
   //GET All Project
   getAllProjects() {
-    return this.http.get(this.baseURL + '/api/PptProjects');
+    return this.http.get(`${this.baseURL}/api/PptProjects`);
   }
 
   //GET Project By Id
