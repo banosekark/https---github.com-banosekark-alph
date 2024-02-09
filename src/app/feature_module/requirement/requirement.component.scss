@@ -7,6 +7,10 @@
         img {
           width: 100%;
         }
+        button {
+          width: 100%;
+          height: 55px;
+        }
       }
       .card {
         margin-bottom: 10px;
@@ -16,7 +20,10 @@
         }
         .card-body {
           img {
-            margin-bottom: 10px;
+            width: 28%;
+            display: flex;
+
+            margin: 0 auto 10px auto;
           }
           span.text-uppercase {
             display: block;
@@ -54,6 +61,13 @@
       }
     }
   }
+}
+
+.upload {
+  font-weight: bold;
+  color: #28a745;
+  margin-left: 15px;
+  line-height: 36px;
 }
 
 //Apply styles starting from medium devices

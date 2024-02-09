@@ -74,7 +74,7 @@ export class GeneratePptDirective implements OnInit {
   genSlide01(pptx: any) {
     this.genMasterSlide(this.pptx);
     let slide = pptx.addSlide({ masterName: 'MASTER_SLIDE' });
-    slide.addText(this.pptName, {
+    slide.addText(this.pptName.projectName, {
       x: 0,
       y: '45%',
       w: '100%',
@@ -85,7 +85,7 @@ export class GeneratePptDirective implements OnInit {
       valign: 'middle',
       shadow: { type: 'outer', opacity: 0.3 },
     });
-    slide.addText('City', {
+    slide.addText(this.pptName.city, {
       x: 0,
       y: '60%',
       w: '100%',
@@ -98,8 +98,15 @@ export class GeneratePptDirective implements OnInit {
   }
 
   genSlide02(pptx: any) {
-    let slideHeading = 'Sr 15 Janta Hardware  96x36”  GSB';
-    let type = 'Vinyl+Sunboard';
+    let slideHeading =
+      this.pptName.projectName +
+      ' ' +
+      this.pptName.slide[0].width +
+      ' x ' +
+      this.pptName.slide[0].height +
+      ' ' +
+      this.pptName.slide[0].selectType; //'Sr 15 Janta Hardware  96x36”  GSB'
+    // let type = 'Vinyl+Sunboard';
     let slideImage =
       'https://cdn.pixabay.com/photo/2014/05/26/13/32/butterfly-354528_1280.jpg';
 
@@ -114,7 +121,7 @@ export class GeneratePptDirective implements OnInit {
       bold: true,
       color: '003b75',
     });
-    slide.addText(type, {
+    slide.addText(this.pptName.slide[0].selectType, {
       x: 0.0,
       y: 0.8,
       w: '100%',
@@ -136,9 +143,16 @@ export class GeneratePptDirective implements OnInit {
     //Save the Presentation file name
   }
   genSlide03(pptx: any) {
-    let slideHeading = 'This is Second slide';
-    let slideImage =
-      'https://cdn.pixabay.com/photo/2014/05/26/13/32/butterfly-354528_1280.jpg';
+    let slideHeading =
+      this.pptName.projectName +
+      '' +
+      this.pptName.slide[0].width +
+      'x' +
+      this.pptName.slide[0].height +
+      this.pptName.slide[0].selectType;
+    let slideImage = this.pptName.slide[0].image;
+    // let slideImage =
+    //   'https://cdn.pixabay.com/photo/2014/05/26/13/32/butterfly-354528_1280.jpg';
 
     let slide = pptx.addSlide({ masterName: 'MASTER_SLIDE' });
     slide.addImage({
@@ -154,7 +168,13 @@ export class GeneratePptDirective implements OnInit {
   }
 
   genSlide04(pptx: any) {
-    let slideHeading = 'Sr 15 Janta Hardware  32x32”  GSB';
+    let slideHeading =
+      this.pptName.projectName +
+      '' +
+      this.pptName.slide[0].width +
+      'x' +
+      this.pptName.slide[0].height +
+      this.pptName.slide[0].selectType;
     let type = 'Vinyl+Sunboard';
     let slideImage =
       'https://cdn.pixabay.com/photo/2014/05/26/13/32/butterfly-354528_1280.jpg';
@@ -170,7 +190,7 @@ export class GeneratePptDirective implements OnInit {
       bold: true,
       color: '003b75',
     });
-    slide.addText(type, {
+    slide.addText(this.pptName.slide[0].selectType, {
       x: 0.0,
       y: 0.8,
       w: '100%',

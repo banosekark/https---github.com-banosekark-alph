@@ -19,7 +19,7 @@ namespace alphaEnterprises.API.Repositories
 
     public async Task<Image> Upload(Image image)
     {
-      var localFilePath = Path.Combine(webHostEnvironment.ContentRootPath, "AImages", image.FileName);
+      var localFilePath = Path.Combine(webHostEnvironment.ContentRootPath, "AImages", $"{image.FileName}{image.FileExtension}");
 
       //Upload Image to Local Path
       using var stream = new FileStream(localFilePath, FileMode.Create);
