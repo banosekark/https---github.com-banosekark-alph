@@ -4,43 +4,51 @@
       <div class="col-md-6 mb-3 display">
         <div class="h-100 p-3 text-white bg-dark rounded-3">
           <h2>Presentation Content</h2>
-          <p><span class="text-uppercase">Project Name :</span> <span class="text-warning"> {{projName}}
-            </span></p>
-          <p><span class="text-uppercase">Email :</span> <span class="text-warning"> {{emailId}}
-            </span></p>
-          <p><span class="text-uppercase">Phone Number :</span> <span class="text-warning"> {{contactNumber}}
-            </span></p>
-          <p><span class="text-uppercase">City :</span> <span class="text-warning"> {{city}}
-            </span></p>
+          <p>
+            <span class="text-uppercase">Project Name :</span>
+            <span class="text-warning"> {{ projName }} </span>
+          </p>
+          <p>
+            <span class="text-uppercase">Email :</span>
+            <span class="text-warning"> {{ emailId }} </span>
+          </p>
+          <p>
+            <span class="text-uppercase">Phone Number :</span>
+            <span class="text-warning"> {{ contactNumber }} </span>
+          </p>
+          <p>
+            <span class="text-uppercase">City :</span>
+            <span class="text-warning"> {{ city }} </span>
+          </p>
           <div class="slide-wrapper">
             <div class="col-12">
               <div class="card col" *ngFor="let item of slide.controls">
                 <h5 class="card-header">Slide</h5>
                 <div class="card-body">
-                  <img *ngIf="url !== undefined" [src]="url" alt="...">
-                  <p><span class="text-uppercase">Heading :</span> <span class="text-warning"> {{heading}}
-                    </span></p>
-                  <p><span class="text-uppercase">Type :</span> <span class="text-warning"> {{pptType}}
-                    </span></p>
-                  <p><span class="text-uppercase">Width :</span> <span class="text-warning"> {{pptWidth}}
-                    </span></p>
-                  <p><span class="text-uppercase">Height:</span> <span class="text-warning">{{pptHeight}}
-                    </span></p>
+                  <img class="img-fluid" *ngIf="url !== undefined" [src]="url" alt="..." />
+                  <p>
+                    <span class="text-uppercase">Heading :</span>
+                    <span class="text-warning"> {{ heading }} </span>
+                  </p>
+                  <p>
+                    <span class="text-uppercase">Type :</span>
+                    <span class="text-warning"> {{ pptType }} </span>
+                  </p>
+                  <p>
+                    <span class="text-uppercase">Width :</span>
+                    <span class="text-warning"> {{ pptWidth }} </span>
+                  </p>
+                  <p>
+                    <span class="text-uppercase">Height:</span>
+                    <span class="text-warning">{{ pptHeight }} </span>
+                  </p>
                 </div>
               </div>
-            </div>
-
-          </div>
-          <!-- start Chip Gride-->
-          <mat-chip-grid #chipGrid aria-label="Slide selection">
-            <mat-chip-row *ngFor="let fruit of slide.controls" (removed)="remove(fruit)">
-              {{fruit}}
-              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
-                <mat-icon>cancel</mat-icon>
+              <button type="button" mat-raised-button color="primary" appGeneratePpt [pptName]="formData">
+                Generate Presentation
               </button>
-            </mat-chip-row>
-          </mat-chip-grid>
-          <!-- End Chip Gride-->
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-6 mb-3 requirement-form">
@@ -50,47 +58,47 @@
             <mat-form-field appearance="outline">
               <mat-label>Project Name</mat-label>
               <input matInput placeholder="Project Name" formControlName="projectName"
-                (change)="onAddProjectName($event)">
+                (change)="onAddProjectName($event)" />
               <mat-error>Please enter a valid project name</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Email" formControlName="email" (change)="onAddEmail($event)">
+              <input matInput placeholder="Email" formControlName="email" (change)="onAddEmail($event)" />
               <mat-error>Please enter a valid email address</mat-error>
             </mat-form-field>
             <div class="mesurement">
               <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <input matInput placeholder="City" formControlName="city" (change)="onAddingCity($event)">
+                <input matInput placeholder="City" formControlName="city" (change)="onAddingCity($event)" />
                 <mat-error>Please enter a valid City</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
                 <input matInput placeholder="Phone Number" formControlName="contactNumber"
-                  (change)="onAddPhone($event)">
+                  (change)="onAddPhone($event)" />
                 <mat-error>Please enter a valid Phone Number</mat-error>
               </mat-form-field>
             </div>
             <!-- start form Array -->
             <ng-container formArrayName="slide">
-              <div *ngFor="let skill of slide.controls; let i=index">
+              <div *ngFor="let skill of slide.controls; let i = index">
                 <p class="fw-light">Slide 1</p>
                 <div [formGroupName]="i">
                   <mat-form-field appearance="outline">
                     <mat-label>Heading</mat-label>
-                    <input matInput placeholder=" Heading" formControlName="heading" (change)="onAddHeading($event)">
+                    <input matInput placeholder=" Heading" formControlName="heading" (change)="onAddHeading($event)" />
                   </mat-form-field>
                   <div class="mesurement">
                     <mat-form-field appearance="outline">
                       <mat-label>Width</mat-label>
-                      <input matInput placeholder="Width" formControlName="width" (change)="onAddingWidth($event)">
+                      <input matInput placeholder="Width" formControlName="width" (change)="onAddingWidth($event)" />
                       <mat-hint>Width should be in inches(eg: 5.9)</mat-hint>
                       <mat-error>Please enter a valid Width</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                       <mat-label>Height</mat-label>
-                      <input matInput placeholder="Height" formControlName="height" (change)="onAddingHeight($event)">
+                      <input matInput placeholder="Height" formControlName="height" (change)="onAddingHeight($event)" />
                       <mat-hint>Height should be in inches(eg: 5.9)</mat-hint>
                       <mat-error>Please enter a valid Height</mat-error>
                     </mat-form-field>
@@ -107,24 +115,27 @@
                     </mat-form-field>
                     <!-- upload image -->
                     <div class="upload">
-                      <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="image">
-                      <span class="file-name">{{selectedFile?.name}}</span>
+                      <button type="button" mat-raised-button (click)="fileInput.click()">
+                        Choose File
+                      </button>
+                      <input hidden (change)="readUrl($event)" #fileInput type="file" formControlName="image" />
+                      <span class="file-name">{{ selectedFile?.name }}</span>
                     </div>
                   </div>
                   <div class="align-items-end">
                     <input type="button" class="add-slide" mat-raised-button color="accent" (click)="onAddSlide()"
-                      [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      (matChipInputTokenEnd)="add($event)" value="+ Add Slide" />
+                      value="+ Add Slide" />
                   </div>
-
-
                 </div>
               </div>
             </ng-container>
             <div class="button-group">
-              <button *ngIf="!isUpdateActive" type="submit" mat-raised-button color="primary">Submit</button>
-              <button *ngIf="isUpdateActive" (click)="onUpdate()" mat-raised-button color="primary">Update</button>
+              <button *ngIf="!isUpdateActive" type="submit" mat-raised-button color="primary">
+                Submit
+              </button>
+              <button *ngIf="isUpdateActive" (click)="onUpdate()" mat-raised-button color="primary">
+                Update
+              </button>
               <button mat-raised-button color="warn">Reset</button>
             </div>
           </form>
@@ -132,7 +143,5 @@
       </div>
     </div>
   </div>
-
-
 </section>
 <ng-toast></ng-toast>

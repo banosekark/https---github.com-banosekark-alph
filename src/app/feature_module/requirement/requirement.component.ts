@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -8,13 +15,17 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RequirementService } from 'src/app/services/requirement.service';
-import { GeneratePptComponent } from './generate-ppt/generate-ppt.component';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { PptProjectService } from 'src/app/services/ppt-project.service';
 import { NgToastService } from 'ng-angular-popup';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorService } from 'src/app/shared_module/services/error.service';
+import {
+  HttpErrorResponse,
+  HttpEventType,
+  HttpHeaders,
+} from '@angular/common/http';
 
 @Component({
   selector: 'app-requirement',
@@ -43,6 +54,17 @@ export class RequirementComponent implements OnInit {
   projectIdToUpdate!: any;
   isUpdateActive: boolean = false;
   errorMsg = this.errorService.errorsMsg;
+  projName1 = [
+    {
+      projectName: 'new',
+    },
+  ];
+
+  progress!: number;
+  message!: string;
+  @ViewChild('fileUpload', { static: false }) fileUpload!: ElementRef;
+  files: any[] = [];
+  @Output() public onUploadFinished = new EventEmitter();
 
   constructor(
     private fb: FormBuilder,
@@ -130,6 +152,7 @@ export class RequirementComponent implements OnInit {
     this.heading = this.formData.slide[0].heading;
     //this.openDialog('1000ms', '1500ms');
     this.AddProject();
+    console.log(this.formData);
   }
 
   //Update Project
@@ -204,20 +227,6 @@ export class RequirementComponent implements OnInit {
     });
   }
 
-  // Dialog Box
-  //Open dialog box
-  openDialog(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string
-  ): void {
-    this.dialog.open(GeneratePptComponent, {
-      width: '500px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: this.formData,
-    });
-  }
-
   uploadFileEvt(imgFile: any) {
     if (imgFile.target.files && imgFile.target.files[0]) {
       this.fileAttr = '';
@@ -265,6 +274,7 @@ export class RequirementComponent implements OnInit {
   }
 
   readUrl(event: any) {
+    console.log(event);
     this.selectedFile = event.target.files[0] ?? null;
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -274,7 +284,48 @@ export class RequirementComponent implements OnInit {
       };
 
       reader.readAsDataURL(event.target.files[0]);
+      console.log('reader', reader);
     }
+
+    console.log('this.selectedFile', this.selectedFile);
+
+    this.sendFile(this.selectedFile);
+  }
+
+  sendFile(file: any) {
+    // const formData = new FormData();
+    // formData.append('file', file.name);
+    // formData.append('fileName', file.name)
+    console.log('file', file.name);
+    const formData: FormData = new FormData();
+    formData.append('File', file);
+    formData.append('FileName', file.name);
+    var options = { content: formData };
+
+    console.log(formData);
+    // file.inProgress = true;
+    this.ProjectService.uploadImage(formData).subscribe((res) => {
+      console.log(res);
+    });
+  }
+
+  private sendFiles() {
+    this.fileUpload.nativeElement.value = '';
+    this.files.forEach((file) => {
+      this.sendFile(file);
+    });
+  }
+
+  onUploadFile() {
+    const fileUpload = this.fileUpload.nativeElement;
+    fileUpload.onchange = () => {
+      for (let index = 0; index < fileUpload.files.length; index++) {
+        const file = fileUpload.files[index];
+        this.files.push({ data: file, inProgress: false, progress: 0 });
+      }
+      this.sendFiles();
+    };
+    fileUpload.click();
   }
 
   onAddProjectName(e: any) {

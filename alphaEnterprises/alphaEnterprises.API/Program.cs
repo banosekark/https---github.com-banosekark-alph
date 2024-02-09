@@ -3,6 +3,7 @@ using alphaEnterprises.API.Data;
 using alphaEnterprises.API.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using alphaEnterprises.API.Mappings;
+using Microsoft.Extensions.FileProviders;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +49,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+  FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "AImages")),
+  RequestPath = "/AImages"
+});
 
 app.MapControllers();
 
